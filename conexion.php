@@ -1,3 +1,7 @@
 <?php
-    $conexion=new mysqli("172.17.0.4","root","","jonibase","3306");
+$HOST="172.17.0.4";
+$DATABASE="jonibase";
+$USER="root";
+$PASSWORD="12345";
+$conn = mysqli_connect($HOST, $USER, $PASSWORD, $DATABASE);
 ?>
