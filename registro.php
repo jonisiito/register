@@ -60,7 +60,7 @@
         if ($result->num_rows > 0) {
             // output data of each row
             while ($row = $result->fetch_assoc()) {
-                if ($row['nombre'] == $nombre || $row['correo'] == $correo) {
+                if ($row['correo'] == $correo) {
                     $existe=TRUE;
                 } else {
                     //echo $row['id'] . $row['nombre'] . $row['correo'];
@@ -69,7 +69,8 @@
             }
         }
         if($existe==FALSE){
-        $sql = $conexion->query("INSERT INTO registro (nombre, correo, clave) values ('$nombre','$correo','$password')");
+        $sql="INSERT INTO registro (nombre, correo, clave) values ('$nombre','$correo','$password')";
+        $conexion->query($sql);
         echo "Usuario creado correctamente";
         }else{
             echo "<script>alert('El usuario ya existe')</script>";
