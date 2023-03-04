@@ -69,7 +69,7 @@
             }
         }
         if($existe==FALSE){
-        $sql="INSERT INTO registro (nombre, correo, clave) values ('$nombre','$correo','$password')";
+        $sql="INSERT INTO registro (nombre, correo, clave, sesion) values ('$nombre','$correo','$password')";
         if (mysqli_query($conn, $sql)) {
             echo '<div class="centrar">Te has registrado correctamente</div>';}
         }else{
