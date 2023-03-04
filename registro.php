@@ -56,7 +56,7 @@
         $password = $_POST['clave'];
         $existe=FALSE;
         $sql = "SELECT * FROM registro";
-        $result = $conexion->query($sql);
+        $result = $conn->query($sql);
         if ($result->num_rows > 0) {
             // output data of each row
             while ($row = $result->fetch_assoc()) {
@@ -70,9 +70,10 @@
         }
         if($existe==FALSE){
         $sql="INSERT INTO registro (nombre, correo, clave) values ('$nombre','$correo','$password')";
-        $conexion->query($sql);
-        echo "Usuario creado correctamente";
+        if (mysqli_query($conn, $sql)) {
+            echo '<div class="centrar">Te has registrado correctamente</div>';}
         }else{
+            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
             echo "<script>alert('El usuario ya existe')</script>";
         }
     }
@@ -80,3 +81,4 @@
 </body>
 
 </html>
+
