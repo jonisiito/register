@@ -54,27 +54,12 @@
         $nombre = $_POST['nombre'];
         $correo = $_POST['correo'];
         $password = $_POST['clave'];
-        $existe=FALSE;
-        $sql = "SELECT * FROM registro";
-        $result = $conn->query($sql);
-        if ($result->num_rows > 0) {
-            // output data of each row
-            while ($row = $result->fetch_assoc()) {
-                if ($row['correo'] == $correo) {
-                    $existe=TRUE;
-                } else {
-                    //echo $row['id'] . $row['nombre'] . $row['correo'];
-                    //echo '<script>alert("Este usuario ya existe");</script>';
-                }
-            }
-        }
-        if($existe==FALSE){
-        $sql="INSERT INTO registro (nombre, correo, clave, sesion) values ('$nombre','$correo','$password')";
-        if (mysqli_query($conn, $sql)) {
-            echo '<div class="centrar">Te has registrado correctamente</div>';}
+        $sesion="";
+        $sql="INSERT INTO registro (nombre, correo, clave, sesion) values ('$nombre','$correo','$password','$sesion')";
+        if(mysqli_query($conn, $sql)){
+            echo '<div class="centrar">Te has registrado correctamente</div>';
         }else{
             echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-            echo "<script>alert('El usuario ya existe')</script>";
         }
     }
     ?>
